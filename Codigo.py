@@ -18,12 +18,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# SUA API KEY ORIGINAL (mantida exatamente como você forneceu)
-TMDB_API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZGVhZGM0N2E4MDFkYWI4MTJmMzNmMDY2OTUyMzhiNyIsIm5iZiI6MTc1NDk1MTIyOS43NTMsInN1YiI6IjY4OWE2ZTNkN2U0MzUxNDEwZmI3MDU3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hGpU4I5Fe-C424P1exCOURJ7z5wEIlLAoJTZwkwxM8c"
-
-# ==============================================================================
-# Classes (mantidas do seu código original)
-# ==============================================================================
+TMDB_API_KEY = os.getenv("TMDB_API_KEY")
 
 class ItemBiblioteca:
     def __init__(self, titulo: str, autor_ou_editora: str, id_item: str, disponivel: bool = True):
@@ -107,10 +102,6 @@ class MidiaVideo(ItemBiblioteca):
         })
         return data
 
-# ==============================================================================
-# Funções de API (com sua key original)
-# ==============================================================================
-
 def buscar_livro_google_books(isbn: str, id_item: str) -> Optional[Livro]:
     url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}"
     logger.info(f"Buscando ISBN {isbn} no Google Books")
@@ -140,7 +131,7 @@ def buscar_livro_google_books(isbn: str, id_item: str) -> Optional[Livro]:
 def buscar_midia_tmdb(titulo: str, id_item: str) -> Optional[MidiaVideo]:
     headers = {
         "accept": "application/json",
-        "Authorization": f"Bearer {TMDB_API_KEY}"  # SUA CHAVE ORIGINAL AQUI
+        "Authorization": f"Bearer {TMDB_API_KEY}"  
     }
     params = {"query": titulo, "language": "pt-BR"}
     logger.info(f"Buscando filme '{titulo}'")
