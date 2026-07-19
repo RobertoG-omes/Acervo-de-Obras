@@ -1,4 +1,3 @@
-# .gitignore
 .env
 biblioteca.log
 __pycache__/
