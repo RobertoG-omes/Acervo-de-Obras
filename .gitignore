@@ -1,4 +1,4 @@
-.env
+*.env
 biblioteca.log
 __pycache__/
 estoque_biblioteca.json
